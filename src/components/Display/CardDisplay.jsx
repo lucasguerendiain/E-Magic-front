@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import "./CardDisplay.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,13 +8,16 @@ import { Button } from "@mui/base";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import DetailModal from "../commons/DetailModal/DetailModal";
 
 export default function CardDisplay() {
     const dispatch = useDispatch();
     const viewCards = useSelector((state) => state.cards.viewCards);
-    const allCards = useSelector((state) => state.cards.allCards);
+    //const allCards = useSelector((state) => state.cards.allCards);
     const [paginado, setPaginado] = useState([]);
     const [pagNum, setPagNum] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [detail, setDetail] = useState({});
 
     function handlePagChange(name) {
         if (name === "left") {
@@ -23,6 +26,11 @@ export default function CardDisplay() {
             if (pagNum < paginado.length - 1) setPagNum(pagNum + 1);
         }
     };
+
+    function handleOpen(card) {
+        setDetail(card);
+        setOpen(true);
+    }
 
     useEffect(() => {
         dispatch(getAllCardsFromDb());
@@ -35,14 +43,13 @@ export default function CardDisplay() {
             pivotArray.push(viewCards.slice(i, i + 9));
         }
         setPaginado(pivotArray);
-    }, [allCards]);
+    }, [viewCards]);
 
     return (
         <Grid className="display">
             <Grid className="pages">
                 <Button
                     size="medium"
-                    disableRipple
                     onClick={() => handlePagChange("left")}
                 >
                     <KeyboardDoubleArrowLeftIcon/>
@@ -50,7 +57,6 @@ export default function CardDisplay() {
                 <Typography variant="h4">Pagina {pagNum + 1}</Typography>
                 <Button
                     size="medium"
-                    disableRipple
                     onClick={() => handlePagChange("right")}
                 >
                     <KeyboardDoubleArrowRightIcon/>
@@ -59,8 +65,8 @@ export default function CardDisplay() {
             <Grid className="cardContainer">
                 {paginado.length? (
                     paginado[pagNum].map((elem, index) => (
-                        <Grid display="flex">
-                            <Card key={index} info={elem}/>
+                        <Grid display="flex" key={index}>
+                            <Card info={elem} func={handleOpen}/>
                         </Grid>
                     ))
                 )
@@ -71,6 +77,13 @@ export default function CardDisplay() {
                 )}
                 <Button onClick={() => window.scrollTo(0,0)}><ArrowUpwardIcon/></Button>
             </Grid>
+            <Box>
+                <DetailModal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    cardInfo={detail}
+                />
+            </Box>
         </Grid>
     )
 }

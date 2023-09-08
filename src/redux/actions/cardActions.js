@@ -1,13 +1,23 @@
 import axios from "axios";
 import {
-    getAllCards, setError
+    getAllCards,
+    setError,
+    getCardsByName,
 } from "../reducer/cardSlice";
 
 export const getAllCardsFromDb = () => async (dispatch) => {
     try {
         const todas = await axios("/cards");
-        console.log(todas);
         dispatch(getAllCards(todas.data));
+    } catch(error) {
+        dispatch(setError(error));
+    }
+};
+
+export const getCardsByNameFromDb = (name) => async(dispatch) => {
+    try {
+        const cartas = await axios(`/cards/byName?name=${name}`);
+        dispatch(getCardsByName(cartas.data));
     } catch(error) {
         dispatch(setError(error));
     }

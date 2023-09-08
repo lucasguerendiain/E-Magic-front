@@ -7,7 +7,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 
 export default function Card(props) {
     const {name, imageUrl, setName, stock, id  } = props.info;
-    
+    const handleOpen = props.func;
     const [cantValue, setCantValue] = useState(1);
 
     function handleCantChange(name) {
@@ -26,7 +26,7 @@ export default function Card(props) {
             </Grid>
             <Grid className="body">
                 <Grid className="imagen">
-                    <img src={imageUrl} alt={name}/>
+                    <img src={imageUrl} alt={name} onClick={() => handleOpen(props.info)}/>
                 </Grid>
                 <Grid display="flex" flexDirection="column">
                     <Grid className="irrelevantInfo">
@@ -35,7 +35,6 @@ export default function Card(props) {
                         <Box display="flex" width="10vw">
                             <Button size="small" onClick={() => handleCantChange("substract")}><RemoveIcon/></Button>
                             <Input
-                                defaultValue="1"
                                 inputProps={{style: {textAlign: "center"}}}
                                 readOnly
                                 disableUnderline

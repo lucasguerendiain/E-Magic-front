@@ -7,6 +7,7 @@ import HouseIcon from '@mui/icons-material/House';
 import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import { getAllCardsFromDb } from "../../redux/actions/cardActions";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function NavBar() {
 
@@ -19,7 +20,7 @@ export default function NavBar() {
     return (
         <Grid className="navBar">
             <Link to={"/home"}>
-                <IconButton>{<HouseIcon/>}</IconButton>
+                <IconButton>{<HouseIcon/>}E-Magia</IconButton>
             </Link>
             <Link to={"/showCards"}>
                 <Button>cartas sueltas</Button>
@@ -28,7 +29,7 @@ export default function NavBar() {
             <Link to={"/addCards"}>
                 <Button>Agregar Cartas</Button>
             </Link>
-            <Input>""""SearchBar""""<Button>*Lupa*</Button></Input>
+            <SearchBar/>
             <Button startIcon={<ShoppingCartIcon/>}>carrito</Button>
             <Button startIcon={<PersonIcon/>}>login</Button>
         </Grid>
