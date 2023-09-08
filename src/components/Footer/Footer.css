@@ -1,0 +1,23 @@
+.foot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: pink;
+    height: 20vh;
+}
+
+.foot-item {
+    display: inline-flexbox;
+    margin-right: 20px;
+}
+
+.group {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.foot-text {
+    pointer-events: none;
+}

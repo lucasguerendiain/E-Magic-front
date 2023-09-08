@@ -1,0 +1,14 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: blue;
+    height: 10vh;
+}
+
+.navBar Button {
+    color: white;
+    font-size: 1rem;
+    margin-right: 10px;
+}
