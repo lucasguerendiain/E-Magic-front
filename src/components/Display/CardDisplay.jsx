@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import "./CardDisplay.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCardsFromDb } from "../../redux/actions/cardActions";
+
 import Card from "../Card/Card";
 import { Button } from "@mui/base";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -11,7 +11,6 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DetailModal from "../commons/DetailModal/DetailModal";
 
 export default function CardDisplay() {
-    const dispatch = useDispatch();
     const viewCards = useSelector((state) => state.cards.viewCards);
     //const allCards = useSelector((state) => state.cards.allCards);
     const [paginado, setPaginado] = useState([]);
@@ -31,10 +30,6 @@ export default function CardDisplay() {
         setDetail(card);
         setOpen(true);
     }
-
-    useEffect(() => {
-        dispatch(getAllCardsFromDb());
-    }, []);
 
     useEffect(() => {
         setPagNum(0);

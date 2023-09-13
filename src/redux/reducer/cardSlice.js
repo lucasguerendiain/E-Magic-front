@@ -18,6 +18,12 @@ export const cardSlice = createSlice({
         getCardsByName: (state, action) => {
             state.viewCards = action.payload;
         },
+        getFilteredCards: (state, action) => {
+            state.viewCards = action.payload;
+        },
+        setAllCards: (state) => {
+            state.viewCards = state.allCards;
+        },
         setError: (state, action) => {
             state.error = action.payload;
         },
@@ -28,6 +34,8 @@ export const {
     getAllCards,
     setError,
     getCardsByName,
+    getFilteredCards,
+    setAllCards,
 } = cardSlice.actions;
 
 export default cardSlice.reducer;

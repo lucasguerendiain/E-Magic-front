@@ -19,19 +19,25 @@ export default function NavBar() {
 
     return (
         <Grid className="navBar">
-            <Link to={"/home"}>
+            <Link to="/home">
                 <IconButton>{<HouseIcon/>}E-Magia</IconButton>
             </Link>
-            <Link to={"/showCards"}>
+            <Link to="/showCards">
                 <Button>cartas sueltas</Button>
             </Link>
-            <Button>por set</Button>
-            <Link to={"/addCards"}>
+            <Link to="/advSearch">
+                <Button>busqueda avanzada</Button>
+            </Link>
+            <Link to="/addCards">
                 <Button>Agregar Cartas</Button>
             </Link>
             <SearchBar/>
-            <Button startIcon={<ShoppingCartIcon/>}>carrito</Button>
-            <Button startIcon={<PersonIcon/>}>login</Button>
+            <Link to="/cart">
+                <Button startIcon={<ShoppingCartIcon/>}>carrito</Button>
+            </Link>
+            <Link to="/login">
+                <Button startIcon={<PersonIcon/>}>login</Button>
+            </Link>
         </Grid>
     )
 };

@@ -1,0 +1,29 @@
+.mainGrid {
+    width: 95vw;
+    height: 90vh;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: beige;
+}
+
+.elemContainer {
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+}
+
+.elem {
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.options {
+    height: 15%;
+}

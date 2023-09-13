@@ -6,6 +6,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CircleIcon from '@mui/icons-material/Circle';
 import CreateIcon from '@mui/icons-material/Create';
 import "./Footer.css";
+import SearchIcon from '@mui/icons-material/Search';
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -21,9 +23,15 @@ export default function Footer() {
             <Grid className="foot-item">
                 <Typography variant="h5">Nav:</Typography>
                 <ButtonGroup className="group" orientation="vertical">
-                    <Button className="foot-button" variant="text" startIcon={<CircleIcon/>}>cartas sueltas</Button>
-                    <Button className="foot-button" variant="text" startIcon={<CircleIcon/>}>por set</Button>
-                    <Button className="foot-button" variant="text" startIcon={<ShoppingCartIcon/>}>carrito</Button>
+                    <Link to="showCards">
+                        <Button className="foot-button" variant="text" startIcon={<CircleIcon/>}>cartas sueltas</Button>
+                    </Link>
+                    <Link to="advSearch">
+                        <Button className="foot-button" variant="text" startIcon={<SearchIcon/>}>busq. avanzada</Button>
+                    </Link>
+                    <Link to="cart">
+                        <Button className="foot-button" variant="text" startIcon={<ShoppingCartIcon/>}>carrito</Button>
+                    </Link>
                 </ButtonGroup>
             </Grid>
         </Grid>

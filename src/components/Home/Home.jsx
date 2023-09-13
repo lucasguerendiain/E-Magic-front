@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import { Grid, Typography, Box, Card } from '@mui/material';
 import imagen1 from "../../assets/banner1.jpg";
 import imagen2 from  "../../assets/banner2.jpg";
-import Carousel from 'react-material-ui-carousel'
+import Carousel from 'react-material-ui-carousel';
+import { getAllCardsFromDb } from "../../redux/actions/cardActions";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllCardsFromDb());
+    }, [dispatch]);
 
     return (
         <Grid className="Home" container>

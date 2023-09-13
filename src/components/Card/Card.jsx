@@ -3,11 +3,15 @@ import "./Card.css";
 import { Box, Button, Grid, Input, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useDispatch } from "react-redux";
+import { addToCartAction } from "../../redux/actions/cartActions";
 
 
 export default function Card(props) {
     const {name, imageUrl, setName, stock, id  } = props.info;
+    const wholeCard = props.info;
     const handleOpen = props.func;
+    const dispatch = useDispatch();
     const [cantValue, setCantValue] = useState(1);
 
     function handleCantChange(name) {
@@ -44,7 +48,7 @@ export default function Card(props) {
                             </Input>
                             <Button size="small" onClick={() => handleCantChange("add")}><AddIcon/></Button>
                         </Box>
-                        <Button>add to cart</Button>
+                        <Button variant="contained" size="small" onClick={() => dispatch(addToCartAction(wholeCard, cantValue))}>add to cart</Button>
                     </Grid>
                 </Grid>
             </Grid>

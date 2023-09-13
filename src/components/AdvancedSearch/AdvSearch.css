@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 80vh;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.textfields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.inputCell {
+    display: flex;
+    width: 60vw;
+}
