@@ -24,6 +24,9 @@ export const cardSlice = createSlice({
         setAllCards: (state) => {
             state.viewCards = state.allCards;
         },
+        setViewCards: (state, action) => {
+            state.viewCards = action.payload;
+        },
         setError: (state, action) => {
             state.error = action.payload;
         },
@@ -36,6 +39,7 @@ export const {
     getCardsByName,
     getFilteredCards,
     setAllCards,
+    setViewCards,
 } = cardSlice.actions;
 
 export default cardSlice.reducer;

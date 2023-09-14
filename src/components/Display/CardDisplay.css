@@ -1,17 +1,7 @@
 .display {
-    display: inline-flexbox;
-    position: relative;
-}
-
-.pages {
-    height: 10%;
-    width: 20%;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    left: 40%;
+    background-color: white;
+    margin: 0;
+    align-items: center;
 }
 
 .cardContainer {
