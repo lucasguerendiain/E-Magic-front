@@ -8,17 +8,20 @@ import { addToCartAction } from "../../redux/actions/cartActions";
 
 
 export default function Card(props) {
-    const {name, imageUrl, setName, stock, id  } = props.info;
+    const {name, imageUrl, setName, stocks, id  } = props.info;
     const wholeCard = props.info;
     const handleOpen = props.func;
     const dispatch = useDispatch();
-    const [cantValue, setCantValue] = useState(1);
+    const [cantValue, setCantValue] = useState(0);
+    //esto necesita un formateo para que sean solo 3 stocks a la ve, uno por cada condicion de carta
 
-    function handleCantChange(name) {
+    function handleCantChange(name, elem) {
         if (name === "add") {
-            setCantValue(cantValue + 1);
+            if (cantValue < elem.stockNumber) {
+                setCantValue(cantValue + 1);
+            }
         } else {
-            if (cantValue > 1) setCantValue(cantValue -1);
+            if (cantValue > 0) setCantValue(cantValue - 1);
         }
     }
 
@@ -33,23 +36,30 @@ export default function Card(props) {
                     <img src={imageUrl} alt={name} onClick={() => handleOpen(props.info)}/>
                 </Grid>
                 <Grid display="flex" flexDirection="column">
-                    <Grid className="irrelevantInfo">
-                        <Typography variant="h4">NM / English</Typography>
-                        <Typography> price </Typography>
-                        <Box display="flex" width="10vw">
-                            <Button size="small" onClick={() => handleCantChange("substract")}><RemoveIcon/></Button>
-                            <Input
-                                inputProps={{style: {textAlign: "center"}}}
-                                readOnly
-                                disableUnderline
-                                value={cantValue}
-                                sx={{textAlign:"center"}}
-                                >
-                            </Input>
-                            <Button size="small" onClick={() => handleCantChange("add")}><AddIcon/></Button>
-                        </Box>
-                        <Button variant="contained" size="small" onClick={() => dispatch(addToCartAction(wholeCard, cantValue))}>add to cart</Button>
-                    </Grid>
+                    {stocks.length? (
+                        stocks.map((elem, index) => {
+                            return(
+                            <Grid className="irrelevantInfo" key={index}>
+                                <Typography variant="h4">{elem.condition} / {elem.language}</Typography>
+                                <Typography variant="h5">{elem.price} USD</Typography>
+                                <Box display="flex" width="10vw">
+                                    <Button size="small" onClick={() => handleCantChange("substract", elem)}><RemoveIcon/></Button>
+                                    <Input
+                                        inputProps={{style: {textAlign: "center"}}}
+                                        readOnly
+                                        disableUnderline
+                                        value={cantValue}
+                                        >
+                                    </Input>
+                                    <Button size="small" onClick={() => handleCantChange("add", elem)}><AddIcon/></Button>
+                                    <Typography>{elem.stockNumber? (`${elem.stockNumber} en stock`) : ("sin stock")}</Typography>
+                                </Box>
+                                <Button variant="contained" size="small" onClick={() => dispatch(addToCartAction(wholeCard, cantValue))}>al carrito</Button>
+                            </Grid>
+                        )})
+                    )
+                    : (<Typography>cargando</Typography>)
+                    }
                 </Grid>
             </Grid>
         </Grid>
